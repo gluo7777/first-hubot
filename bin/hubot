@@ -1,12 +1,12 @@
 #!/bin/sh
-
 # Set environment variables
-# export HUBOT_SLACK_TOKEN=xoxb-YOUR-TOKEN-HERE
-# ./bin/setenv.sh
-
+dir=$(dirname "$0")
+echo "In directory $dir"
+export HUBOT_SLACK_TOKEN="$($dir/setenv.sh)"
+echo "Setting HUBOT_SLACK_TOKEN=$HUBOT_SLACK_TOKEN"
 set -e
 
 npm install
 export PATH="node_modules/.bin:node_modules/hubot/node_modules/.bin:$PATH"
 
-exec node_modules/.bin/hubot --name "first-hubot" "$@"
+exec node_modules/.bin/hubot --name "willbot" --adapter slack
